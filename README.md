@@ -56,7 +56,8 @@ You can use a tool like mitmproxy or Burp Suite to intercept the network.
 
 Now you should be able to see the network traffic.
 
-![image](https://user-images.githubusercontent.com/18504798/204705212-7affe211-164e-4d9e-b573-443dff68c4ca.png)
+![image](https://user-images.githubusercontent.com/18504798/205090609-2d0906af-e636-4718-a915-ed91c9054b78.png)
+
 
 ## View script logs
 To view the logcat run:
