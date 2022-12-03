@@ -19,7 +19,7 @@ Download the latest patched APK:
 
 This method requires frida-tools and also frida-server running in the device
 ```
-frida -U -l .\messenger-ssl-pinning-bypass.js -f com.facebook.orca --no-pause
+frida -U -l .\messenger-ssl-pinning-bypass.js -f com.facebook.orca
 ```
 
 ## Patch APK
