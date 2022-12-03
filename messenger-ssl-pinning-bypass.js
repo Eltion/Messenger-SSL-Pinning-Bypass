@@ -1,44 +1,67 @@
-function patch(library) {
-	let found = false;
-	const pattern = "b5 01 00 b4 80 82 4c 39";
-	Memory.scan(library.base, library.size, pattern, {
-		onMatch(address, size) {
-			Memory.patchCode(address, 4, code => {
-				found = true;
-				const cw = new Arm64Writer(code);
-				cw.putBytes([0xb5, 0x01, 0x0, 0xb5]);
+function patch_arm64(library) {
+    let found = false;
+    const pattern = "b5 01 00 b4 80 82 4c 39";
+    Memory.scan(library.base, library.size, pattern, {
+        onMatch(address, size) {
+            found = true;
+            Memory.patchCode(address, 4, code => {
+                const cw = new Arm64Writer(code);
+                cw.putBytes([0xb5, 0x01, 0x0, 0xb5]);
                 cw.flush();
-				return 'stop';
-			});
-			logger(`[*][+] Patched libcoldstart.so`);
-		},
-		onComplete() {
-			if (!found) {
-				logger(`[*][-] Failed to find pattern: ${pattern}`);
-			}
-		}
-	});
-
+            });
+            logger(`[*][+] Patched libcoldstart.so`);
+            return 'stop';
+        },
+        onComplete() {
+            if (!found) {
+                logger(`[*][-] Failed to find pattern: ${pattern}`);
+            }
+        }
+    });
 }
 
+
+function patch_x86(library) {
+    let found = false;
+    const pattern = "74 44 8b 8f d4 01 00 00";
+    Memory.scan(library.base, library.size, pattern, {
+        onMatch(address, size) {
+            found = true;
+            Memory.patchCode(address, 2, code => {
+                const cw = new X86Writer(code);
+                cw.putBytes([0x75, 0x44]);
+                cw.flush();
+            });
+            logger(`[*][+] Patched libcoldstart.so`);
+            return 'stop';
+        },
+        onComplete() {
+            if (!found) {
+                logger(`[*][-] Failed to find pattern: ${pattern}`);
+            }
+        }
+    });
+}
+
+
 function logger(message) {
-	console.log(message);
-	Java.perform(function () {
-		var Log = Java.use("android.util.Log");
-		Log.v("MESSENGER_SSL_PINNING_BYPASS", message);
-	});
+    console.log(message);
+    Java.perform(function () {
+        var Log = Java.use("android.util.Log");
+        Log.v("MESSENGER_SSL_PINNING_BYPASS", message);
+    });
 }
 
 function waitForModule(moduleName) {
-	return new Promise(resolve => {
-		const interval = setInterval(() => {
-			const module = Process.findModuleByName(moduleName);
-			if (module != null) {
-				clearInterval(interval);
-				resolve(module);
-			}
-		}, 10);
-	});
+    return new Promise(resolve => {
+        const interval = setInterval(() => {
+            const module = Process.findModuleByName(moduleName);
+            if (module != null) {
+                clearInterval(interval);
+                resolve(module);
+            }
+        }, 10);
+    });
 }
 
 
@@ -91,11 +114,10 @@ Java.perform(function () {
 
 
 waitForModule("libcoldstart.so").then(lib => {
-	patch(lib);
-});
-
-
-waitForModule("libgadget.so").then(lib => {
-	console.log("libgadget.so")
+    if (Process.arch == "arm64") {
+        patch_arm64(lib)
+    } else if (Process.arch == "ia32") {
+        patch_x86(lib)
+    }
 });
 

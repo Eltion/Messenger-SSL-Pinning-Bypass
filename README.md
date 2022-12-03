@@ -1,7 +1,7 @@
 # Messenger SSL Pinning Bypass
 
 Bypass Messenger SSL pinning on Android devices.  
-Supported ABIs: `arm64-v8a`  
+Supported ABIs: `arm64-v8a`, `x86`  
 Latest version: `v388.0.0.23.106`
 
 If you like this project:  
@@ -10,7 +10,8 @@ If you like this project:
 ## Patched APK (No Root)
 
 Download the latest patched APK: 
-+ [messenger-v388.0.0.23.106.apk](https://github.com/Eltion/Messenger-SSL-Pinning-Bypass/releases/download/v388.0.0.23.106/messenger-v388.0.0.23.106.apk)
++ [messenger-v388.0.0.23.106-arm64-v8a.apk](https://github.com/Eltion/Messenger-SSL-Pinning-Bypass/releases/download/v288.0.0.23.106/messenger-v388.0.0.23.106-arm64-v8a.apk)
++ [messenger-v388.0.0.23.106-x86.apk](https://github.com/Eltion/Messenger-SSL-Pinning-Bypass/releases/download/v288.0.0.23.106/messenger-v388.0.0.23.106-x86.apk)
 
 [See all versions](https://github.com/Eltion/Messenger-SSL-Pinning-Bypass/releases/)
 
