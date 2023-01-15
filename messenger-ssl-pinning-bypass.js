@@ -1,12 +1,13 @@
 function patch_arm64(library) {
     let found = false;
-    const pattern = "b5 01 00 b4 80 82 4c 39";
+    const pattern = "ff ff 01 a9 ?? ?? 00 b4 80 82 4c 39";
     Memory.scan(library.base, library.size, pattern, {
         onMatch(address, size) {
             found = true;
-            Memory.patchCode(address, 4, code => {
+            Memory.patchCode(address, 2, code => {
                 const cw = new Arm64Writer(code);
-                cw.putBytes([0xb5, 0x01, 0x0, 0xb5]);
+                cw.skip(6);
+                cw.putBytes([0x00, 0xb5, 0x80, 0x82]);
                 cw.flush();
             });
             logger(`[*][+] Patched libcoldstart.so`);
@@ -34,6 +35,29 @@ function patch_x86(library) {
             });
             logger(`[*][+] Patched libcoldstart.so`);
             return 'stop';
+        },
+        onComplete() {
+            if (!found) {
+                logger(`[*][-] Failed to find pattern: ${pattern}`);
+            }
+        }
+    });
+}
+
+
+function patch_arm(library) {
+    let found = false;
+    const pattern = "84 b1 95 f8 dc 01";
+    Memory.scan(library.base, library.size, pattern, {
+        onMatch(address, size) {
+            found = true;
+            Memory.patchCode(address, 4, code => {
+                const cw = new ArmWriter(code);
+                cw.putBytes([0x84, 0xb9, 0x95, 0xf8 ]);
+                cw.flush();
+            });
+            logger(`[*][+] Patched libcoldstart.so`);
+            //return 'stop';
         },
         onComplete() {
             if (!found) {
@@ -118,6 +142,8 @@ waitForModule("libcoldstart.so").then(lib => {
         patch_arm64(lib)
     } else if (Process.arch == "ia32") {
         patch_x86(lib)
+    } else if (Process.arch == "arm") {
+        patch_arm(lib);
     }
 });
 
