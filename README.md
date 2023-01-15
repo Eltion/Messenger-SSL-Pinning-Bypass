@@ -2,7 +2,7 @@
 
 Bypass Messenger SSL pinning on Android devices.  
 Supported ABIs: `arm64-v8a`, `x86`  
-Latest version: `v388.0.0.23.106`
+Latest version: `v391.2.0.20.404`
 
 If you like this project:  
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/eltimusa4q)
@@ -10,8 +10,9 @@ If you like this project:
 ## Patched APK (No Root)
 
 Download the latest patched APK: 
-+ [messenger-v388.0.0.23.106-arm64-v8a.apk](https://github.com/Eltion/Messenger-SSL-Pinning-Bypass/releases/download/v288.0.0.23.106/messenger-v388.0.0.23.106-arm64-v8a.apk)
-+ [messenger-v388.0.0.23.106-x86.apk](https://github.com/Eltion/Messenger-SSL-Pinning-Bypass/releases/download/v288.0.0.23.106/messenger-v388.0.0.23.106-x86.apk)
++ [messenger-v391.2.0.20.404-arm64-v8a.apk](https://github.com/Eltion/Messenger-SSL-Pinning-Bypass/releases/download/v391.2.0.20.404/messenger-v391.2.0.20.404-arm64-v8a.apk)
++ [messenger-v391.2.0.20.404-armeabi-v7a.apk](https://github.com/Eltion/Messenger-SSL-Pinning-Bypass/releases/download/v391.2.0.20.404/messenger-v391.2.0.20.404-armeabi-v7a.apk)
++ [messenger-v391.2.0.20.404-x86.apk](https://github.com/Eltion/Messenger-SSL-Pinning-Bypass/releases/download/v391.2.0.20.404/messenger-v391.2.0.20.404-x86.apk)
 
 [See all versions](https://github.com/Eltion/Messenger-SSL-Pinning-Bypass/releases/)
 
