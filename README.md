@@ -13,6 +13,7 @@ If you like this project:
 ## Patched APK (No Root)
 
 Download the latest patched APK: 
++ [messenger-v468.0.0.45.109-arm64-v8a.apk](https://github.com/123edi10/Messenger-SSL-Pinning-Bypass/releases/tag/v468.0.0.45.109-arm64-v8a)
 + [messenger-v391.2.0.20.404-arm64-v8a.apk](https://github.com/Eltion/Messenger-SSL-Pinning-Bypass/releases/download/v391.2.0.20.404/messenger-v391.2.0.20.404-arm64-v8a.apk)
 + [messenger-v391.2.0.20.404-armeabi-v7a.apk](https://github.com/Eltion/Messenger-SSL-Pinning-Bypass/releases/download/v391.2.0.20.404/messenger-v391.2.0.20.404-armeabi-v7a.apk)
 + [messenger-v391.2.0.20.404-x86.apk](https://github.com/Eltion/Messenger-SSL-Pinning-Bypass/releases/download/v391.2.0.20.404/messenger-v391.2.0.20.404-x86.apk)

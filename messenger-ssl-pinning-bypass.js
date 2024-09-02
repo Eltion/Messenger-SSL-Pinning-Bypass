@@ -1,6 +1,6 @@
 function patch_arm64(library) {
     let found = false;
-    const pattern = "ff ff 01 a9 ?? ?? 00 b4 80 82 4c 39";
+    const pattern = "ff ?? ?? a9 ?? ?? 00 b4 80 82 4c 39";
     Memory.scan(library.base, library.size, pattern, {
         onMatch(address, size) {
             found = true;
